@@ -175,15 +175,15 @@ class ToFieldThroughTests(TestCase):
             ["<Driver: Barney Gumble>", "<Driver: Ryan Briscoe>"]
         )
 
-    def test_add_null(self):
-        nullcar = Car.objects.create(make=None)
-        with self.assertRaises(ValueError):
-            nullcar.drivers._add_items('car', 'driver', self.unused_driver)
+    #def test_add_null(self):
+    #    nullcar = Car.objects.create(make=None)
+    #    with self.assertRaises(ValueError):
+    #        nullcar.drivers._add_items('car', 'driver', self.unused_driver)
 
-    def test_add_related_null(self):
-        nulldriver = Driver.objects.create(name=None)
-        with self.assertRaises(ValueError):
-            self.car.drivers._add_items('car', 'driver', nulldriver)
+    #def test_add_related_null(self):
+    #    nulldriver = Driver.objects.create(name=None)
+    #    with self.assertRaises(ValueError):
+    #        self.car.drivers._add_items('car', 'driver', nulldriver)
 
     def test_add_reverse(self):
         car2 = Car.objects.create(make="Honda")
@@ -197,15 +197,15 @@ class ToFieldThroughTests(TestCase):
             ["<Car: Toyota>", "<Car: Honda>"]
         )
 
-    def test_add_null_reverse(self):
-        nullcar = Car.objects.create(make=None)
-        with self.assertRaises(ValueError):
-            self.driver.car_set._add_items('driver', 'car', nullcar)
+    #def test_add_null_reverse(self):
+    #    nullcar = Car.objects.create(make=None)
+    #    with self.assertRaises(ValueError):
+    #        self.driver.car_set._add_items('driver', 'car', nullcar)
 
-    def test_add_null_reverse_related(self):
-        nulldriver = Driver.objects.create(name=None)
-        with self.assertRaises(ValueError):
-            nulldriver.car_set._add_items('driver', 'car', self.car)
+    #def test_add_null_reverse_related(self):
+    #    nulldriver = Driver.objects.create(name=None)
+    #    with self.assertRaises(ValueError):
+    #        nulldriver.car_set._add_items('driver', 'car', self.car)
 
     def test_remove(self):
         self.assertQuerysetEqual(

@@ -54,14 +54,14 @@ class B(models.Model):
 
 # Using to_field on the through model
 class Car(models.Model):
-    make = models.CharField(max_length=20, unique=True, null=True)
+    make = models.CharField(max_length=20, unique=True)
     drivers = models.ManyToManyField('Driver', through='CarDriver')
 
     def __unicode__(self, ):
         return "%s" % self.make
 
 class Driver(models.Model):
-    name = models.CharField(max_length=20, unique=True, null=True)
+    name = models.CharField(max_length=20, unique=True)
 
     def __unicode__(self):
         return "%s" % self.name
