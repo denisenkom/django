@@ -4,7 +4,7 @@ import datetime
 from decimal import Decimal
 
 from django.db.models import Avg, Sum, Count, Max, Min
-from django.test import TestCase, Approximate
+from django.test import TestCase, Approximate, skipUnlessDBFeature
 
 from .models import Author, Publisher, Book, Store
 
@@ -566,6 +566,7 @@ class BaseAggregateTestCase(TestCase):
             ]
         )
 
+    @skipUnlessDBFeature('allows_group_by_ordinal')
     def test_dates_with_aggregation(self):
         """
         Test that .dates() returns a distinct set of dates when applied to a
