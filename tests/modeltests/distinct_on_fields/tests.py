@@ -7,6 +7,7 @@ from django.test.utils import str_prefix
 from .models import Tag, Celebrity, Fan, Staff, StaffTag
 
 class DistinctOnTests(TestCase):
+    @skipUnlessDBFeature('ignores_nulls_in_unique_constraints')
     def setUp(self):
         t1 = Tag.objects.create(name='t1')
         t2 = Tag.objects.create(name='t2', parent=t1)
