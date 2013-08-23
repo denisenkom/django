@@ -630,6 +630,9 @@ class BaseDatabaseFeatures(object):
     # supported by the Python driver
     supports_paramstyle_pyformat = True
 
+    # Support using column's ordinal in GROUP BY clause
+    allows_group_by_ordinal = True
+
     def __init__(self, connection):
         self.connection = connection
 
