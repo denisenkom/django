@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from django.test import TestCase
+from django.test import TestCase, skipUnlessDBFeature
 
 from .models import Place, Restaurant, Bar, Favorites, Target, UndergroundBar
 
@@ -203,6 +203,7 @@ class OneToOneRegressionTests(TestCase):
             with self.assertRaises(UndergroundBar.DoesNotExist):
                 self.p1.undergroundbar
 
+    @skipUnlessDBFeature('ignores_nulls_in_unique_constraints')
     def test_get_reverse_on_unsaved_object(self):
         """
         Regression for #18153 and #19089.
