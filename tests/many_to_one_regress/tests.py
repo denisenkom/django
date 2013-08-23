@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from django.db import models
-from django.test import TestCase
+from django.test import TestCase, skipUnlessDBFeature
 from django.utils import six
 
 from .models import (
@@ -123,6 +123,7 @@ class ManyToOneRegressionTests(TestCase):
         with self.assertNumQueries(1):
             self.assertEqual(th.child_set.count(), 0)
 
+    @skipUnlessDBFeature('ignores_nulls_in_unique_constraints')
     def test_related_null_to_field(self):
         c1 = Car.objects.create()
         c2 = Car.objects.create()
