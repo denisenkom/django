@@ -110,6 +110,7 @@ class Command(BaseCommand):
 
         app_fixtures = [os.path.join(os.path.dirname(path), 'fixtures') for path in app_module_paths]
 
+        full_path = ''
         try:
             with connection.constraint_checks_disabled():
                 for fixture_label in fixture_labels:
