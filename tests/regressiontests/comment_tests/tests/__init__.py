@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+import datetime
 
 from django.contrib.auth.models import User
 from django.contrib.comments.forms import CommentForm
@@ -27,6 +28,7 @@ class CommentTestCase(TestCase):
             user_url = "http://example.com/~joe/",
             comment = "First!",
             site = Site.objects.get_current(),
+            submit_date = datetime.datetime(2010, 1, 2, 0, 0, 1),
         )
         c2 = Comment.objects.create(
             content_type = CT(Author),
@@ -36,6 +38,7 @@ class CommentTestCase(TestCase):
             user_url = "http://example.com/~joe/",
             comment = "First here, too!",
             site = Site.objects.get_current(),
+            submit_date = datetime.datetime(2010, 1, 2, 0, 0, 2),
         )
 
         # Two authenticated comments: one on the same Article, and
@@ -57,6 +60,7 @@ class CommentTestCase(TestCase):
             user_url = "http://example.com/~frank/",
             comment = "Damn, I wanted to be first.",
             site = Site.objects.get_current(),
+            submit_date = datetime.datetime(2010, 1, 2, 0, 0, 3),
         )
         c4 = Comment.objects.create(
             content_type = CT(Author),
@@ -65,6 +69,7 @@ class CommentTestCase(TestCase):
             user_url = "http://example.com/~frank/",
             comment = "You get here first, too?",
             site = Site.objects.get_current(),
+            submit_date = datetime.datetime(2010, 1, 2, 0, 0, 4),
         )
 
         return c1, c2, c3, c4
