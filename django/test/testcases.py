@@ -550,7 +550,7 @@ class TransactionTestCase(SimpleTestCase):
 
         for db in self._databases_names(include_mirrors=False):
             call_command('flush', verbosity=0, interactive=False, database=db,
-                         skip_validation=True, reset_sequences=False)
+                         skip_validation=True, reset_sequences=True)
 
     def _urlconf_teardown(self):
         if hasattr(self, '_old_root_urlconf'):
