@@ -3744,7 +3744,7 @@ class UserAdminTest(TestCase):
 
         expected_queries = 10
         # Oracle doesn't implement "RELEASE SAVPOINT", see #20387.
-        if connection.vendor == 'oracle':
+        if connection.vendor in ('oracle', 'microsoft'):
             expected_queries -= 1
 
         with self.assertNumQueries(expected_queries):
