@@ -815,7 +815,7 @@ class TransactionTestCase(SimpleTestCase):
         for db_name in self._databases_names(include_mirrors=False):
             call_command('flush', verbosity=0, interactive=False,
                          database=db_name, skip_validation=True,
-                         reset_sequences=False,
+                         reset_sequences=True,
                          allow_cascade=self.available_apps is not None,
                          inhibit_post_syncdb=self.available_apps is not None)
 
