@@ -460,12 +460,15 @@ class BaseCacheTests(object):
         Passing in None into timeout results in a value that is cached forever
         '''
         self.cache.set('key1', 'eggs', 0)
+        time.sleep(0.01)
         self.assertEqual(self.cache.get('key1'), None)
 
         self.cache.add('key2', 'ham', 0)
+        time.sleep(0.01)
         self.assertEqual(self.cache.get('key2'), None)
 
         self.cache.set_many({'key3': 'sausage', 'key4': 'lobster bisque'}, 0)
+        time.sleep(0.01)
         self.assertEqual(self.cache.get('key3'), None)
         self.assertEqual(self.cache.get('key4'), None)
 
