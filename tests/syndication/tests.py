@@ -2,13 +2,13 @@ from __future__ import absolute_import, unicode_literals
 
 from xml.dom import minidom
 
-import unittest
 import sys
 from django.contrib.syndication import views
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.utils import tzinfo
 from django.utils.feedgenerator import rfc2822_date, rfc3339_date
+from django.utils.unittest import skipIf
 
 from .models import Entry
 
@@ -262,7 +262,7 @@ class SyndicationFeedTest(FeedTestCase):
         updated = doc.getElementsByTagName('updated')[0].firstChild.wholeText
         self.assertEqual(updated[-6:], '+00:42')
 
-    @unittest.skipIf(sys.platform.startswith("win"), "Windows doesn't support modification of timezone")
+    @skipIf(sys.platform.startswith("win"), "Windows doesn't support modification of timezone")
     def test_feed_last_modified_time(self):
         response = self.client.get('/syndication/naive-dates/')
         self.assertEqual(response['Last-Modified'], 'Thu, 03 Jan 2008 19:30:00 GMT')
