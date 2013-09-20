@@ -168,7 +168,7 @@ def teardown(state):
     # so that it will successfully remove temp trees containing
     # non-ASCII filenames on Windows. (We're assuming the temp dir
     # name itself does not contain non-ASCII characters.)
-    shutil.rmtree(six.text_type(TEMP_DIR))
+    shutil.rmtree(six.text_type(TEMP_DIR), ignore_errors=True)
     # Restore the old settings.
     for key, value in state.items():
         setattr(settings, key, value)
